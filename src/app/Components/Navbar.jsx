@@ -1,0 +1,85 @@
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import { HiMenu } from "react-icons/hi";
+import { IoMdClose } from "react-icons/io";
+import { GiLovers } from "react-icons/gi";
+import Link from "next/link";
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <header className="w-full mt-5 bg-white shadow-md px-4 md:px-8 py-4 relative z-50">
+      {/* Mobile Top Bar */}
+      <div className="flex items-center justify-between lg:hidden w-full relative">
+        {/* Logo */}
+        <Image src="/Afaq1.png" alt="Logo" width={50} height={60} />
+
+        {/* Donate button centered */}
+        <button className="absolute w-56 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center bg-zinc-700 text-white px-4 h-9 rounded-full hover:bg-zinc-500 transition text-sm cursor-pointer z-10">
+          تبرع الآن <GiLovers className="mr-2 text-xl" />
+        </button>
+
+        {/* Menu toggle button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          className="relative z-20"
+        >
+          {menuOpen ? (
+            <IoMdClose className="text-3xl text-zinc-700" />
+          ) : (
+            <HiMenu className="text-3xl text-zinc-700" />
+          )}
+        </button>
+      </div>
+
+      {/* Desktop Nav */}
+      <div className="hidden lg:flex items-center justify-between w-full">
+        {/* Logo */}
+        <Image src="/Afaq1.png" alt="Logo" width={50} height={60} />
+
+        {/* Menu items */}
+        <ul className="flex gap-6 text-lg">
+          <li>الصفحة الرئيسية</li>
+          <li>
+            <Link href={"/aboutus"}>من نحن</Link>
+          </li>
+          <li>الحالات الإنسانية</li>
+          <li>الحملات</li>
+          <li>الإنجازات</li>
+          <li>انضم إلينا</li>
+          <li>تواصل معنا</li>
+        </ul>
+
+        {/* Donate button */}
+        <button className="flex items-center cursor-pointer bg-zinc-700 text-white px-5 h-10 rounded-full hover:bg-zinc-500 transition">
+          تبرع الآن <GiLovers className="mr-2 text-2xl" />
+        </button>
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`lg:hidden overflow-hidden transition-max-height duration-500 ease-in-out ${
+          menuOpen ? "max-h-96" : "max-h-0"
+        }`}
+      >
+        <ul className="grid gap-4 text-center py-4 text-lg">
+          <li className="font-bold">الصفحة الرئيسية</li>
+          <li>
+            <Link href={"/aboutus"}>من نحن</Link>
+          </li>
+          <li>الحالات الإنسانية</li>
+          <li>الحملات</li>
+          <li>الإنجازات</li>
+          <li>انضم إلينا</li>
+          <li>تواصل معنا</li>
+        </ul>
+      </div>
+    </header>
+  );
+};
+
+export default Navbar;
