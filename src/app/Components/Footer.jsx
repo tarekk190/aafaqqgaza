@@ -1,92 +1,94 @@
+"use client";
 import Link from "next/link";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaInstagram } from "react-icons/fa";
 import { IoLogoTwitter } from "react-icons/io5";
 import { TfiFacebook } from "react-icons/tfi";
-import { FaInstagram } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
-
-
-
-
-
+import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-white ">
-      <div className="container">
-        <div className="grid grid-cols-4 gap-10 p-10 w-full">
+    <footer className="bg-white mt-20">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="max-w-7xl mx-auto px-4"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 py-10">
           <div>
-            <h2 className="font-bold text-xl">معلومات عنا</h2>
-            <p className="text-gray-500">
+            <h2 className="font-bold text-xl mb-2">معلومات عنا</h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
               تعمل الجمعية على تعزيز مفاهيم حماية البيئة من خلال نشر الوعي
               البيئي والمشاركة في القضايا البيئية التي تتلائم مع حاجة المجتمع
               المحلي
             </p>
             <h3 className="text-xl font-bold mt-5">موقعنا</h3>
-            <div className="flex">
-              <FaLocationDot className=" text-3xl text-blue-400 mt-4" />
-              <h4 className="text-gray-500 mt-4 ml-2">غزه</h4>
+            <div className="flex items-center mt-2">
+              <FaLocationDot className="text-2xl text-blue-400" />
+              <span className="text-gray-500 ml-2">غزة</span>
             </div>
-            <div className="flex">
-              <FaPhoneAlt className="text-3xl text-blue-400 mt-4" />
-              <h4 className="text-gray-500 mt-4 ml-2">+970-567-135-679</h4>
+            <div className="flex items-center mt-2">
+              <FaPhoneAlt className="text-2xl text-blue-400" />
+              <span className="text-gray-500 ml-2">+970-567-135-679</span>
             </div>
           </div>
+
           <div>
             <h2 className="font-bold text-xl mb-2">من نحن</h2>
-            <Link href={"/aboutus"} className="text-gray-500">
-              نبذة عن الفريق
-            </Link>
-            <Link href={""} className="grid text-gray-500 mt-5">
-              الاقتراحات أو الشكاوي
-            </Link>
+            <div className="flex flex-col gap-3 text-gray-500 text-sm">
+              <Link href="/aboutus">نبذة عن الفريق</Link>
+              <Link href="#">الاقتراحات أو الشكاوي</Link>
+            </div>
           </div>
+
           <div>
             <h2 className="font-bold text-xl mb-2">المصادر</h2>
-            <Link href={"/aboutus"} className="text-gray-500">
-              التقارير
-            </Link>
-            <Link href={""} className="grid text-gray-500 mt-5">
-              الأخبار والإعلانات
-            </Link>
+            <div className="flex flex-col gap-3 text-gray-500 text-sm">
+              <Link href="/aboutus">التقارير</Link>
+              <Link href="#">الأخبار والإعلانات</Link>
+            </div>
           </div>
+
           <div>
-            <h2 className="font-bold text-xl ">انضم إلينا</h2>
-            <Link href={"/aboutus"} className="text-gray-500">
-              طلب تطوع
-            </Link>
-            <Link href={""} className="grid text-gray-500 mt-5">
-              بناء شراكة
-            </Link>
-            <h3 className=" font-bold text-xl mt-5">تواصل معنا</h3>
-            <Link href={""} className="grid text-gray-500">
-              اتصل بنا
-            </Link>
+            <h2 className="font-bold text-xl mb-2">انضم إلينا</h2>
+            <div className="flex flex-col gap-3 text-gray-500 text-sm">
+              <Link href="/aboutus">طلب تطوع</Link>
+              <Link href="#">بناء شراكة</Link>
+              <h3 className="font-bold text-lg mt-5">تواصل معنا</h3>
+              <Link href="#">اتصل بنا</Link>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="bg-gray-200 w-100 flex justify-evenly">
-        <div>
-          <h5 className="p-5 text-gray-500">
-            جميع الحقوق محفوظة للموقع الإلكتروني فريق آفاق التطوعي 2024 - 1446هـ
-          </h5>
+      </motion.div>
+
+      {/* حقوق النشر + الأيقونات */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="bg-gray-200 flex flex-col md:flex-row items-center justify-between gap-4 py-4 px-6"
+      >
+        <p className="text-sm text-gray-500 text-center md:text-right">
+          جميع الحقوق محفوظة للموقع الإلكتروني فريق آفاق التطوعي 2024 - 1446هـ
+        </p>
+
+        <div className="flex gap-3">
+          {[IoLogoTwitter, TfiFacebook, FaInstagram, MdOutlineMailOutline].map(
+            (Icon, i) => (
+              <div
+                key={i}
+                className="bg-white p-2 rounded-xl text-gray-500 cursor-pointer transition hover:bg-black hover:text-white"
+              >
+                <Icon className="text-xl" />
+              </div>
+            )
+          )}
         </div>
-        <div className="flex my-auto gap-3">
-          <div className="bg-white p-2 cursor-pointer text-gray-400 rounded-xl transition-colors hover:bg-black hover:text-white">
-            <IoLogoTwitter className="  text-3xl transition-all  " />
-          </div>
-          <div className="bg-white p-2 cursor-pointer text-gray-400 rounded-xl transition-colors hover:bg-black hover:text-white">
-            <TfiFacebook className="  text-3xl transition-all  " />
-          </div>
-          <div className="bg-white p-2 cursor-pointer text-gray-400 rounded-xl transition-colors hover:bg-black hover:text-white">
-            <FaInstagram className="  text-3xl transition-all  " />
-          </div>
-          <div className="bg-white p-2 cursor-pointer text-gray-400 rounded-xl transition-colors hover:bg-black hover:text-white">
-            <MdOutlineMailOutline className="  text-3xl transition-all  " />
-          </div>
-        </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };
