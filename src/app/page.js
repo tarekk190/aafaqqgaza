@@ -13,7 +13,6 @@ export default function Home() {
         <Card title={"المهام المنجزة"} />
         <Achievements />
       </div>
-      <Footer />
     </>
   );
 }
